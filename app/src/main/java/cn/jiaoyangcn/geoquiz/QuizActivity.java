@@ -3,6 +3,7 @@ package cn.jiaoyangcn.geoquiz;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -21,6 +22,10 @@ public class QuizActivity extends AppCompatActivity {
     private ImageButton mBackButton;
     private ImageButton mNextButton;
     private TextView mQuestionTextView;
+
+    // 日志
+    private static final String TAG = "QuizActivity";
+
 
     private Question[] mQuestionBank = new Question[]{
             new Question(R.string.question_oceans, true),
@@ -57,7 +62,11 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG,"onCreate(Bundle) called");
         setContentView(R.layout.activity_quiz);
+
+
+
 
         mQuestionTextView = (TextView) findViewById(R.id.question_text_view);
         updateQuestion();
@@ -110,6 +119,8 @@ public class QuizActivity extends AppCompatActivity {
             }
         });
 
+
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         mClient = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
@@ -134,6 +145,7 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        Log.d(TAG,"onStart() called");
 
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
@@ -144,10 +156,26 @@ public class QuizActivity extends AppCompatActivity {
     @Override
     public void onStop() {
         super.onStop();
-
+        Log.d(TAG,"onStop() called");
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         AppIndex.AppIndexApi.end(mClient, getIndexApiAction());
         mClient.disconnect();
+    }
+
+    @Override
+    public void onPause(){
+        super.onPause();
+        Log.d(TAG,"onPause() called");
+    }
+    @Override
+    public  void  onResume(){
+        super.onResume();
+        Log.d(TAG,"onResume() called");
+    }
+    @Override
+    public void onDestroy(){
+        super.onDestroy();
+        Log.d(TAG,"onDestroy() called");
     }
 }
