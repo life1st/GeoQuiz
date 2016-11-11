@@ -46,6 +46,7 @@ public class QuizActivity extends AppCompatActivity {
     private void updateQuestion() {
         int question = mQuestionBank[mCurrentIndex].getTextResId();
         mQuestionTextView.setText(question);
+
     }
 
     private void checkAnswer(boolean userPressedTrue) {
@@ -119,7 +120,7 @@ public class QuizActivity extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                    mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
+                    // mCurrentIndex = (mCurrentIndex + 1) % mQuestionBank.length;
                     updateQuestion();
             }
 
